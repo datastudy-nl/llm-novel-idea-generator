@@ -1,4 +1,4 @@
-"""Novel idea generator.
+"""Novel Search Space.
 
 Idea
 ----
@@ -28,7 +28,7 @@ Public API
 * :func:`generate_novel_concepts` - the high-level "tool" an LLM agent calls.
 * :func:`build_concept_lists` - just the whitelist/blacklist geometry step.
 * :func:`load_concept_vocabulary` - the WordNet-derived concept pool.
-* :class:`NovelIdeaResult` - the structured, JSON-serialisable result.
+* :class:`NovelSearchSpaceResult` - the structured, JSON-serialisable result.
 """
 
 from __future__ import annotations
@@ -40,14 +40,14 @@ from .config import (
     GENERATOR_MODEL_NAME,
 )
 from .generation import generate_novel_concepts
-from .result import NovelIdeaResult
+from .result import NovelSearchSpaceResult
 from .vocabulary import load_concept_vocabulary
 
 __all__ = [
     "generate_novel_concepts",
     "build_concept_lists",
     "load_concept_vocabulary",
-    "NovelIdeaResult",
+    "NovelSearchSpaceResult",
     "EMBEDDING_MODEL_NAME",
     "GENERATOR_MODEL_NAME",
     "CACHE_DIR",

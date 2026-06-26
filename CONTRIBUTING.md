@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in improving the Novel Idea Generator!
+Thanks for your interest in improving Novel Search Space!
 
 ## Development setup
 
@@ -18,8 +18,8 @@ pip install -e .
   external source (WordNet) and the geometry, never from a fixed list of "good"
   ideas. Keep that property intact.
 - Keep the public API stable: `generate_novel_concepts`, `build_concept_lists`,
-  `load_concept_vocabulary`, and `NovelIdeaResult` are the contract.
-- Prefer small, focused modules. Each file in `novel_idea_generator/` has a
+  `load_concept_vocabulary`, and `NovelSearchSpaceResult` are the contract.
+- Prefer small, focused modules. Each file in `novel_search_space/` has a
   single responsibility (see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)).
 
 ## Making a change
@@ -28,8 +28,8 @@ pip install -e .
 2. Create a branch and make your change.
 3. Verify the package still imports and runs end-to-end:
    ```bash
-   python -c "import novel_idea_generator"
-   python -m novel_idea_generator umbrella --json
+   python -c "import novel_search_space"
+   python -m novel_search_space umbrella --json
    ```
 4. Open a pull request with a clear description and rationale.
 
