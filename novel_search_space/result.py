@@ -8,8 +8,8 @@ from typing import List
 
 
 @dataclass
-class NovelIdeaResult:
-    """Structured, JSON-serialisable result returned to the calling agent."""
+class NovelSearchSpaceResult:
+    """Structured, JSON-serialisable result returned by Novel Search Space."""
 
     term: str
     whitelist: List[str]

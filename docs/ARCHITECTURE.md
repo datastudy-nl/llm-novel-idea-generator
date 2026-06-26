@@ -14,9 +14,9 @@ result through two stages: **geometry** (deterministic) and **generation**
 | `vocabulary.py`    | WordNet concept pool + per-`(model, wordlist)` embedding cache.     |
 | `concept_lists.py` | **Stage 1** — distance-band whitelist/blacklist (`build_concept_lists`). |
 | `generation.py`    | **Stage 2** — prompt build, parse, and `generate_novel_concepts`.   |
-| `result.py`        | `NovelIdeaResult` dataclass (`to_dict` / `to_json`).                |
+| `result.py`        | `NovelSearchSpaceResult` dataclass (`to_dict` / `to_json`).         |
 | `cli.py`           | argparse CLI (`main`).                                              |
-| `__main__.py`      | Enables `python -m novel_idea_generator`.                           |
+| `__main__.py`      | Enables `python -m novel_search_space`.                             |
 | `__init__.py`      | Re-exports the public API.                                          |
 
 ## Data flow
@@ -30,7 +30,7 @@ term ──► build_concept_lists ──► (whitelist, blacklist) ──► _b
                                                           _parse_concepts
                                                                  │
                                                                  ▼
-                                                         NovelIdeaResult
+                                                         NovelSearchSpaceResult
 ```
 
 ## Stage 1 — geometry (deterministic)

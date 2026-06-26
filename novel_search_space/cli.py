@@ -1,4 +1,4 @@
-"""Command-line interface for the novel idea generator."""
+"""Command-line interface for Novel Search Space."""
 
 from __future__ import annotations
 

@@ -3,11 +3,11 @@
 All public symbols are importable directly from the top-level package:
 
 ```python
-from novel_idea_generator import (
+from novel_search_space import (
     generate_novel_concepts,
     build_concept_lists,
     load_concept_vocabulary,
-    NovelIdeaResult,
+    NovelSearchSpaceResult,
 )
 ```
 
@@ -28,7 +28,7 @@ generate_novel_concepts(
     generator_model: str = GENERATOR_MODEL_NAME,
     max_new_tokens: int = 512,
     temperature: float = 0.9,
-) -> NovelIdeaResult
+) -> NovelSearchSpaceResult
 ```
 
 The high-level entry point — the "tool" an LLM agent calls. It (1) derives the
@@ -51,7 +51,7 @@ the parsed concepts plus the lists for transparency.
 | `max_new_tokens`  | `int`           | `512`   | Generation length cap.                                                      |
 | `temperature`     | `float`         | `0.9`   | Sampling temperature.                                                       |
 
-**Returns:** [`NovelIdeaResult`](#novelidearesult)
+**Returns:** [`NovelSearchSpaceResult`](#novelsearchspaceresult)
 
 **Raises:** `ValueError` if `term` is empty or the distance band is invalid.
 
@@ -97,11 +97,11 @@ for a seeded random subset (faster experiments). The result is cached.
 
 ---
 
-## `NovelIdeaResult`
+## `NovelSearchSpaceResult`
 
 ```python
 @dataclass
-class NovelIdeaResult:
+class NovelSearchSpaceResult:
     term: str
     whitelist: list[str]
     blacklist: list[str]
@@ -124,4 +124,4 @@ class NovelIdeaResult:
 | ---------------------- | --------------------------------------------- |
 | `EMBEDDING_MODEL_NAME` | `sentence-transformers/all-MiniLM-L6-v2`      |
 | `GENERATOR_MODEL_NAME` | `Qwen/Qwen2.5-1.5B-Instruct`                  |
-| `CACHE_DIR`            | `~/.cache/novel_idea_generator` (or `$NOVEL_IDEA_CACHE`) |
+| `CACHE_DIR`            | `~/.cache/novel_search_space` (or `$NOVEL_SEARCH_SPACE_CACHE`) |
