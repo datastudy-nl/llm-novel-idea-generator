@@ -4,7 +4,7 @@
 > deriving candidate ideas from embedding geometry over an external lexical
 > database — not from autoregressive token prediction.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 
 ---
@@ -268,4 +268,11 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-[MIT](LICENSE)
+**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).**
+
+You may use, share, and adapt this project for **non-commercial** purposes, as
+long as you give appropriate credit to **Lars Cornelissen (datastudy.nl)** and
+indicate any changes. **Commercial use requires a separate license** — contact
+<lars@datastudy.nl>.
+
+See [LICENSE](LICENSE) for the full terms.

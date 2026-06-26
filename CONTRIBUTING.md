@@ -40,6 +40,14 @@ pip install -e .
 - Alternative embedding / generator backends.
 - A small evaluation harness for "novel but coherent" scoring.
 
+## Licensing of contributions
+
+This project is licensed under **CC BY-NC 4.0** (see [LICENSE](LICENSE)). By
+submitting a contribution you agree it is licensed under the same terms, with
+attribution to **Lars Cornelissen (datastudy.nl)** retained. Commercial use of
+the project requires a separate license from the copyright holder
+(<lars@datastudy.nl>).
+
 ## Code style
 
 - Type hints on public functions.
