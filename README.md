@@ -1,4 +1,4 @@
-# Novel Idea Generator
+# Novel Search Space
 
 > Break an LLM out of its own prior. Generate genuinely *non-obvious* concepts by
 > deriving candidate ideas from embedding geometry over an external lexical
@@ -48,7 +48,7 @@ flowchart LR
     WL --> G[generator model]
     BL --> G
     A --> G
-    G --> R[NovelIdeaResult]
+    G --> R[NovelSearchSpaceResult]
 ```
 
 ---
@@ -84,13 +84,13 @@ faster.
 ### Command line
 
 ```bash
-python -m novel_idea_generator umbrella
+python -m novel_search_space umbrella
 ```
 
 With options and full JSON output:
 
 ```bash
-python -m novel_idea_generator umbrella \
+python -m novel_search_space umbrella \
   --n-concepts 8 \
   --min-distance 0.55 \
   --max-distance 0.80 \
@@ -100,7 +100,7 @@ python -m novel_idea_generator umbrella \
 ### Python API
 
 ```python
-from novel_idea_generator import generate_novel_concepts
+from novel_search_space import generate_novel_concepts
 
 result = generate_novel_concepts("umbrella", n_concepts=6)
 
@@ -115,11 +115,11 @@ print(result.to_json(indent=2))
 
 ### As an LLM tool
 
-`generate_novel_concepts` returns a `NovelIdeaResult` with `to_dict()` /
+`generate_novel_concepts` returns a `NovelSearchSpaceResult` with `to_dict()` /
 `to_json()`, making it trivial to expose as a function-calling tool:
 
 ```python
-from novel_idea_generator import generate_novel_concepts
+from novel_search_space import generate_novel_concepts
 
 def novel_ideas_tool(term: str, n_concepts: int = 6) -> dict:
     """Return non-obvious concepts for `term`, derived from embedding geometry."""
@@ -135,7 +135,7 @@ it with `interface` — the concept at the heart of "let other apps plug into th
 one" — and let the geometry decide which lenses to fuse and which clichés to ban.
 
 ```bash
-python -m novel_idea_generator interface --n-concepts 8 --json
+python -m novel_search_space interface --n-concepts 8 --json
 ```
 
 **What the geometry banned (blacklist — the "of course" answers):**
@@ -210,7 +210,7 @@ Tuning tips:
 - **Too random / incoherent?** Lower `max_distance` to tighten the band.
 - **Faster runs / experiments?** Pass a smaller vocabulary:
   ```python
-  from novel_idea_generator import generate_novel_concepts, load_concept_vocabulary
+  from novel_search_space import generate_novel_concepts, load_concept_vocabulary
   vocab = load_concept_vocabulary(max_words=5000)  # seeded random subset
   generate_novel_concepts("umbrella", vocabulary=vocab)
   ```
@@ -224,7 +224,7 @@ Tuning tips:
 | `generate_novel_concepts`  | High-level entry point: geometry + constrained generation.    |
 | `build_concept_lists`      | Just the whitelist/blacklist geometry step.                   |
 | `load_concept_vocabulary`  | The WordNet-derived concept pool (cached).                    |
-| `NovelIdeaResult`          | Structured, JSON-serialisable result (`to_dict` / `to_json`). |
+| `NovelSearchSpaceResult`   | Structured, JSON-serialisable result (`to_dict` / `to_json`). |
 | `EMBEDDING_MODEL_NAME`     | Default embedding model id.                                   |
 | `GENERATOR_MODEL_NAME`     | Default generator model id.                                   |
 | `CACHE_DIR`                | Where vocabulary embeddings are cached.                       |
@@ -236,9 +236,9 @@ See [docs/API.md](docs/API.md) for full parameter reference and
 
 ## Configuration
 
-| Environment variable | Default                              | Purpose                          |
+| Environment variable         | Default                             | Purpose                          |
 | -------------------- | ------------------------------------ | -------------------------------- |
-| `NOVEL_IDEA_CACHE`   | `~/.cache/novel_idea_generator`      | Disk cache for vocab embeddings. |
+| `NOVEL_SEARCH_SPACE_CACHE`   | `~/.cache/novel_search_space`      | Disk cache for vocab embeddings. |
 
 Vocabulary embeddings are computed once per `(model, wordlist)` and cached to
 disk, so subsequent calls only embed the seed term.
@@ -248,15 +248,15 @@ disk, so subsequent calls only embed the seed term.
 ## Project layout
 
 ```
-novel_idea_generator/
+novel_search_space/
 ├── __init__.py        # public API re-exports
-├── __main__.py        # `python -m novel_idea_generator`
+├── __main__.py        # `python -m novel_search_space`
 ├── config.py          # model ids + cache location
 ├── models.py          # lazy, cached model loaders
 ├── vocabulary.py      # WordNet vocab + embedding cache
 ├── concept_lists.py   # Step 1: distance-band whitelist/blacklist
 ├── generation.py      # Step 2: prompt + parse + public entry point
-├── result.py          # NovelIdeaResult dataclass
+├── result.py          # NovelSearchSpaceResult dataclass
 └── cli.py             # argparse CLI
 ```
 

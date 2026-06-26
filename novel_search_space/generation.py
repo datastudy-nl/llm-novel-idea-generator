@@ -8,7 +8,7 @@ from typing import List, Optional, Sequence
 from .concept_lists import build_concept_lists
 from .config import EMBEDDING_MODEL_NAME, GENERATOR_MODEL_NAME
 from .models import get_generator
-from .result import NovelIdeaResult
+from .result import NovelSearchSpaceResult
 
 
 def _build_prompt(term: str, whitelist: Sequence[str], blacklist: Sequence[str],
@@ -64,7 +64,7 @@ def generate_novel_concepts(
     generator_model: str = GENERATOR_MODEL_NAME,
     max_new_tokens: int = 512,
     temperature: float = 0.9,
-) -> NovelIdeaResult:
+) -> NovelSearchSpaceResult:
     """Generate novel concepts for ``term``.
 
     1. derive whitelist + blacklist from a cosine-distance band over an external
@@ -117,7 +117,7 @@ def generate_novel_concepts(
 
     concepts = _parse_concepts(raw)
 
-    return NovelIdeaResult(
+    return NovelSearchSpaceResult(
         term=term,
         whitelist=whitelist,
         blacklist=blacklist,

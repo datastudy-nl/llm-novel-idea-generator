@@ -1,4 +1,4 @@
-"""Enable ``python -m novel_idea_generator <term>``."""
+"""Enable ``python -m novel_search_space <term>``."""
 
 from .cli import main
 
